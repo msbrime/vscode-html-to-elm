@@ -11,3 +11,15 @@ export function styleToElm(value: string): string[] {
         return '( "' + arr.join('", "') + '" )';
     });
 }
+
+export function sanitizeHtml(value: string): string {
+    return collapseSpaces(value);
+}
+
+function collapseSpaces(value: string): string {
+    let
+        regex = /(\s{2,}|\n)/gm,
+        collapsedValue = value.replace(regex, ' ');
+
+    return collapsedValue;
+}

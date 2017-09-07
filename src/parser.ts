@@ -1,6 +1,6 @@
 'use strict';
 
-import {Parser} from 'htmlparser2';
+import { Parser } from 'htmlparser2';
 import * as utils from './utils';
 
 
@@ -20,6 +20,7 @@ export function convert(html: string, options: { indent: { with: string, size: n
     let indentWith = options.indent.with;
     let depth = -1;
     let context = [];
+    html = utils.sanitizeHtml(html);
     let onOpenTag = (name: string, attributes: any): void => {
         let pre = '';
         let tag = [];
