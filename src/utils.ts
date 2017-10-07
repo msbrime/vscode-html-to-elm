@@ -23,3 +23,24 @@ function collapseSpaces(value: string): string {
 
     return collapsedValue;
 }
+
+
+export function ariaToAttributes(value: string): string {
+    let
+        regex = /(aria-.+?)\s/gm,
+        ariaAsAttributes = value.replace(regex, 'attribute "$1" ');
+
+    return ariaAsAttributes;
+}
+
+export function dataToAttributes(value: string): string {
+    let
+        regex = /(data-.+?)\s/gm,
+        dataAsAttributes = value.replace(regex, 'attribute "$1" ');
+
+    return dataAsAttributes;
+}
+
+export function fixTypeDeclaration(value: string): string {
+    return value.replace(/type'/, "type_");
+}

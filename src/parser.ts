@@ -64,6 +64,13 @@ export function convert(html: string, options: { indent: { with: string, size: n
         depth--;
         elm += ']';
     };
+    let postParseOps = (elmCode): string => {
+        return utils.ariaToAttributes(
+            utils.dataToAttributes(
+                utils.fixTypeDeclaration(elmCode)
+            )
+        );
+    };
     let parser = new Parser({
         onopentag: onOpenTag,
         ontext: onText,
@@ -72,5 +79,5 @@ export function convert(html: string, options: { indent: { with: string, size: n
 
     parser.write(html);
     parser.end('');
-    return elm;
+    return postParseOps(elm);
 }
